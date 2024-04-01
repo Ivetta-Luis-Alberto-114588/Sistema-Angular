@@ -1,17 +1,18 @@
 # 01
 
 ## For Github 
-* git config --global user.name ""
-* git config --global user.email ""
-* git init
-* git add .
-* git commit -m "first commit"
+* git remote -v (saber las rama de origen y final)
+* git config --global user.name "" (configurar el nombre)
+* git config --global user.email "" (configurar el mail)
+* git init (inicializar el proyecto de github)
+* git add . (enviar todos los cambios al stage)
+* git commit -m "first commit" (hacer un commit)
 * git branch -M main
 * git remote add origin https://github.com/Ivetta-Luis-Alberto-114588/prueba.git
 * git push -u origin main
-* git tag -a v1.0.0 -m "msj..."
-* git tag
-* git push --tag 
+* git tag -a v1.0.0 -m "msj..." (crear un tag)
+* git tag (ver los tags)
+* git push --tag  (pushear los tags)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
 
