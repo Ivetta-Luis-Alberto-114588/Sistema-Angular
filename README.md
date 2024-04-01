@@ -7,6 +7,9 @@
 * git branch -M main
 * git remote add origin https://github.com/Ivetta-Luis-Alberto-114588/prueba.git
 * git push -u origin main
+* git tag -a v1.0.0 -m "msj..."
+* git tag
+* git push --tag 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
 
