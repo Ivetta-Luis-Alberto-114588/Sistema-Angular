@@ -1,5 +1,13 @@
 # 01
 
+## For Github 
+git init
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/Ivetta-Luis-Alberto-114588/prueba.git
+git push -u origin main
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
 
 ## Development server
