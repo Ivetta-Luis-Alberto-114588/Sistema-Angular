@@ -1,13 +1,26 @@
 import { NgModule } from '@angular/core';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { Router, RouterModule } from '@angular/router';
+
+
+import { SharedModule } from '../shared/shared.module';
+
+
+import { ProgressComponent } from './progress/progress.component';
+import { DashoboardComponent } from './dashoboard/dashoboard.component';
+import { Grafica1Component } from './grafica1/grafica1.component';
+import { PagesComponent } from './pages.component';
+
 
 
 
 @NgModule({
-    imports: [],
-    exports: [],
+    imports: [RouterModule, SharedModule],
+    exports: [RouterModule],
     declarations: [
-    DashboardComponent
+      DashoboardComponent,
+      ProgressComponent,
+      Grafica1Component,
+      PagesComponent
   ],
     providers: [],
 })
