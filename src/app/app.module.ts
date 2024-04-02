@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 //module
 import { AuthModule } from './auth/auth.module';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
 import { PageModule } from './pages/page.module';
 
 
@@ -12,16 +13,21 @@ import { AppComponent } from './app.component';
 import { NotPageFoundComponent } from './404/not-page-found/not-page-found.component';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    NotPageFoundComponent,
+    NotPageFoundComponent
+    ,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AuthModule
+    AuthModule,
+    FormsModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

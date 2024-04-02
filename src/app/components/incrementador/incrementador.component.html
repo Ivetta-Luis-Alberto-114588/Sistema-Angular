@@ -1,0 +1,16 @@
+<div class="input-group">
+
+    <span class="input-group-btn">
+        <button [class]="btnClass" type="button" (click)="restar()">
+            <i class="fa fa-minus"></i>
+        </button>
+    </span>
+    
+    <input type="number" class="form-control text-center" [(ngModel)]="progress">
+    
+    <span class="input-group-btn">
+        <button [class]="btnClass" type="button" (click)="sumar()">
+            <i class="fa fa-plus"></i>
+        </button>
+    </span>
+</div>

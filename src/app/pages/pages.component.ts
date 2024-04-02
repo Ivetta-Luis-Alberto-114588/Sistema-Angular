@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+declare function funcionInicial(): any;
 
 @Component({
   selector: 'app-pages',
@@ -6,7 +8,13 @@ import { Component } from '@angular/core';
   styles: [
   ]
 })
-export class PagesComponent {
+export class PagesComponent implements OnInit {
+  
+    
+  
+  ngOnInit(): void {
+    funcionInicial()
+  }
 
   
 }
