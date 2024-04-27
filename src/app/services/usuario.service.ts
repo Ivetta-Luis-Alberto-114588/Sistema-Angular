@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { registerFormInterface } from '../interfaces/registerForm.interface';
 import { enviroment } from 'src/enviroments/enviroment';
 import { loginFormInterface } from '../interfaces/loginForm.interface';
-import { Observable, tap } from 'rxjs';
+import { Observable, tap, pipe } from 'rxjs';
 
 
 
@@ -43,6 +43,16 @@ export class UsuarioService {
                   })
                 )
 
+  }
+
+  loginGoogle( token: string ) {
+    return this.http.post( `${this.base_url}/login/google`, { token } )
+          .pipe(
+            tap( (resp : any) =>{
+              console.log(resp)
+              localStorage.setItem('token', resp.token)
+            })
+          )
   }
 
 
