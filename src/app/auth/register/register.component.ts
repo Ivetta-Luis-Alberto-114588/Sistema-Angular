@@ -40,9 +40,13 @@ export class RegisterComponent {
       return
     } 
 
-    //realizar el post del fomrulario de registro
+    //realizar el post del formulario de registro
     this.usuarioService.crearUsuario( this.registerForm.value ).subscribe({
-      next: (data) => console.log(data),
+      next: (data) => {
+        console.log(data),
+        //si esta todo ok navego al dashboard
+        this.router.navigateByUrl("/")
+      },
       error: (e) => {
           console.log(e.error.msg)
           Swal.fire("Error", e.error.msg, 'error')

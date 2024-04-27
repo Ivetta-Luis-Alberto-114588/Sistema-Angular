@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { registerFormInterface } from '../interfaces/registerForm.interface';
 import { enviroment } from 'src/enviroments/enviroment';
 import { loginFormInterface } from '../interfaces/loginForm.interface';
-import { Observable, tap, pipe } from 'rxjs';
+import { Observable, tap, pipe, map, catchError, of } from 'rxjs';
 
 
 
@@ -17,6 +17,27 @@ export class UsuarioService {
   base_url = enviroment.base_url ;
 
   constructor(private http : HttpClient) { }
+
+validarToken(): Observable<boolean>{
+  
+  //obtengo el token del localstorage
+  const token = localStorage.getItem('token') || ''
+  
+  //hago un renvovar token con el token guardado en el localstorage
+  // armo el header para enviar el x-token que defini en postman
+  return this.http.get(`${this.base_url}/login/renew`, {
+    headers: {
+      'x-token': token}
+  }).pipe(
+    tap( (resp: any) => {
+      localStorage.setItem('token', resp.token)
+    }),
+    map( resp => true),
+    //aca lo que hago es si hay un error devuelvo un observable false y en el guard lo redirecciona
+    // al /login
+    catchError( error => of (false))
+  )
+}
 
 
   crearUsuario(formdata: registerFormInterface){

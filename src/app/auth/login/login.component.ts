@@ -65,6 +65,8 @@ export class LoginComponent implements AfterViewInit {
 
     this.usuarioService.loginGoogle(response.credential).subscribe( resp => {
       // console.log( {login: resp})
+      
+      //si esta todo ok navego al dashboard
       this.router.navigateByUrl("/")
     }  )
   }
@@ -84,6 +86,9 @@ export class LoginComponent implements AfterViewInit {
         } else {
           localStorage.removeItem('email')
         }
+
+        //si esta todo ok navego al dashboard
+        this.router.navigateByUrl('/')
 
         },
       error: e => { Swal.fire("error", e.error.msg, "error") }
