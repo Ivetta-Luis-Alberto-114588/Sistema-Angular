@@ -7,6 +7,7 @@ import { Observable, tap, pipe, map, catchError, of } from 'rxjs';
 import { registerFormInterface } from '../interfaces/registerForm.interface';
 import { enviroment } from 'src/enviroments/enviroment';
 import { loginFormInterface } from '../interfaces/loginForm.interface';
+import { Usuario } from '../models/usuario.model';
 
 declare const google: any
 declare const gapi : any
@@ -20,8 +21,9 @@ export class UsuarioService {
   
   base_url = enviroment.base_url ;
 
-
   public auth2: any
+
+  public usuario! : Usuario
 
   constructor(
     private http : HttpClient,
@@ -80,6 +82,9 @@ export class UsuarioService {
         'x-token': token}
     }).pipe(
       tap( (resp: any) => {
+        const {nombre, email, img,  google, role, uid} = resp.usuario
+        this.usuario = new Usuario(nombre, email, '', img, google, role, uid)
+
         localStorage.setItem('token', resp.token)
       }),
       map( resp => true),

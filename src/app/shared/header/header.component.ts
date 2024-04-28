@@ -9,9 +9,14 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class HeaderComponent {
 
+  imagenUrl : string =  ''
+
   constructor(
     private usuarioService: UsuarioService
-  ){  }
+  ){ 
+    //hago esto para cuando se inicialice el componente cargue la imagen, esto va a al html 
+    this.imagenUrl = this.usuarioService.usuario.obtenerImagenUrl
+   }
 
   logout(){
     this.usuarioService.logout()
