@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { loginFormInterface } from 'src/app/interfaces/loginForm.interface';
@@ -34,7 +34,8 @@ export class LoginComponent implements AfterViewInit {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private ngZone: NgZone
   ){}
 
 //autenticacion de google, despues que se renderiza el componente, para poder llamar a la funcion
@@ -66,8 +67,12 @@ export class LoginComponent implements AfterViewInit {
     this.usuarioService.loginGoogle(response.credential).subscribe( resp => {
       // console.log( {login: resp})
       
-      //si esta todo ok navego al dashboard
-      this.router.navigateByUrl("/")
+      //esto lo hagao para ejecutar codigo de Angular en librerias que no son angular
+      this.ngZone.run( () => {
+        //si esta todo ok navego al dashboard
+        this.router.navigateByUrl("/")
+
+      })
     }  )
   }
 
@@ -76,7 +81,8 @@ export class LoginComponent implements AfterViewInit {
     //puedo guardar el token aca en el metodo next o directamente en el servicio
 
     this.usuarioService.login(this.loginForm.value as loginFormInterface).subscribe({
-      next: (data: any) => {  console.log(data)
+      next: (data: any) => { 
+        //  console.log(data)
         // Swal.fire("info",data.token, "info"),
         // localStorage.setItem('token', data.token)
 
