@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Usuario } from 'src/app/models/usuario.model';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
@@ -7,16 +8,21 @@ import { UsuarioService } from 'src/app/services/usuario.service';
   styles: [
   ]
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
-  imagenUrl : string =  ''
+  usuario! : Usuario
 
   constructor(
     private usuarioService: UsuarioService
   ){ 
-    //hago esto para cuando se inicialice el componente cargue la imagen, esto va a al html 
-    this.imagenUrl = this.usuarioService.usuario.obtenerImagenUrl
+    //hago esto para obtener el usuario en el constructor que es lo que primero se inicializa
+    this.usuario = this.usuarioService.usuario
    }
+
+
+  ngOnInit(): void {
+    this.usuarioService.validarToken()
+  }
 
   logout(){
     this.usuarioService.logout()

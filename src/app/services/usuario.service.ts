@@ -4,13 +4,13 @@ import { Router } from '@angular/router';
 import { Observable, tap, pipe, map, catchError, of } from 'rxjs';
 
 
+declare const google: any
+
 import { registerFormInterface } from '../interfaces/registerForm.interface';
 import { enviroment } from 'src/enviroments/enviroment';
 import { loginFormInterface } from '../interfaces/loginForm.interface';
 import { Usuario } from '../models/usuario.model';
 
-declare const google: any
-declare const gapi : any
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +21,6 @@ export class UsuarioService {
   
   base_url = enviroment.base_url ;
 
-  public auth2: any
-
   public usuario! : Usuario
 
   constructor(
@@ -30,45 +28,31 @@ export class UsuarioService {
     private router: Router,
     private ngZone: NgZone   
   ) { 
-    // this.googleInit() 
+    this.googleInit() 
   }
 
-
-  //esto lo uso para salir de google
-  googleInit(){
-    gapi.load('auth2'), () => {
-      this.auth2 = gapi.auth2.init({
+  googleInit(): Promise<any> {
+    return new Promise( (resolve) => {
+      google.accounts.id.initialize({
         client_id: "1098957435153-cjhs40btr7pg9iutn6d24f45kg8448d9.apps.googleusercontent.com",
-        cookiepolicy: 'single_host_origin',
-      })
-     
-    };   
-  }
+        callback: (response: any) => resolve(response)
+        // Evitamos que la referencia al this en en handle metodo no cambie
+      });
+    });
+  };
 
 
   logout(){
-    localStorage.removeItem('token')
 
-    //lo que hago aca es tambien limpiar el boton de autenticacion de google
+    localStorage.removeItem('token');
+
+    this.googleInit();
+
     google.accounts.id.revoke('laivetta@gmail.com', ()=>{
-    
-    //este ngzone es porque la consola me recomienza usarla
-    //sirve para ejecutar codigo de Angular en librerias externas
-      this.ngZone.run( () => {
-      this.router.navigateByUrl('/login')
+      this.router.navigateByUrl('/login');
+    });
+  };
 
-    })
-      
-    //ahora uso lo de google para salir  
-    // this.auth2.signOut().then( () => {
-      
-    //   console.log('usuario deslogueado de google')
-      
-    // })
-
-    })
-
-   }
 
   validarToken(): Observable<boolean>{
     
@@ -81,13 +65,16 @@ export class UsuarioService {
       headers: {
         'x-token': token}
     }).pipe(
-      tap( (resp: any) => {
-        const {nombre, email, img,  google, role, uid} = resp.usuario
+      map( (resp: any) => {
+        const {nombre, email, img = '',  google, role, uid} = resp.usuario
+        console.log( "imangen ->", resp)
         this.usuario = new Usuario(nombre, email, '', img, google, role, uid)
 
         localStorage.setItem('token', resp.token)
+
+        return true
       }),
-      map( resp => true),
+   
       //aca lo que hago es si hay un error devuelvo un observable false y en el guard lo redirecciona
       // al /login
       catchError( error => of (false))
