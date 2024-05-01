@@ -12,6 +12,7 @@ import { Grafica1Component } from './grafica1/grafica1.component';
 import { PagesComponent } from './pages.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 
 
@@ -26,6 +27,7 @@ import { RxjsComponent } from './rxjs/rxjs.component';
       PagesComponent,
       PromesasComponent,
       RxjsComponent,
+      PerfilComponent,
       
   ],
     providers: [],
