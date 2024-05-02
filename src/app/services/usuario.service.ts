@@ -21,7 +21,7 @@ export class UsuarioService {
   
   base_url = enviroment.base_url ;
 
-  public usuario! : Usuario
+  public usuario! : Usuario  // el VALIDAR TOKEN ES EL QUE LLENA EL USUARIO
 
   constructor(
     private http : HttpClient,
@@ -29,6 +29,15 @@ export class UsuarioService {
     private ngZone: NgZone   
   ) { 
     this.googleInit() 
+  }
+
+  get token() : string {
+     //obtengo el token del localstorage
+    return localStorage.getItem('token') || ''
+  }
+
+  get uid() :  string {
+    return this.usuario.uid || ''
   }
 
   googleInit(): Promise<any> {
@@ -56,18 +65,15 @@ export class UsuarioService {
 
   validarToken(): Observable<boolean>{
     
-    //obtengo el token del localstorage
-    const token = localStorage.getItem('token') || ''
-    
     //hago un renvovar token con el token guardado en el localstorage
     // armo el header para enviar el x-token que defini en postman
     return this.http.get(`${this.base_url}/login/renew`, {
       headers: {
-        'x-token': token}
+        'x-token': this.token}
     }).pipe(
       map( (resp: any) => {
         const {nombre, email, img = '',  google, role, uid} = resp.usuario
-        console.log( "imangen ->", resp)
+        // console.log( "imangen ->", resp)
         this.usuario = new Usuario(nombre, email, '', img, google, role, uid)
 
         localStorage.setItem('token', resp.token)
@@ -118,5 +124,18 @@ export class UsuarioService {
           )
   }
 
+  actualizarPerfil( data: {nombre: string, email: string, role: string}){
+
+    data = {
+      ... data,
+      role: this.usuario.role || 'USER_ROLE'
+    }
+
+    return this.http.put( `${ this.base_url }/usuarios/${ this.uid }`, data, {
+      headers: {
+        'x-token': this.token
+      }
+    } )
+  }
 
 }

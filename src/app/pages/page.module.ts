@@ -13,12 +13,13 @@ import { PagesComponent } from './pages.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
 
 @NgModule({
-    imports: [RouterModule, SharedModule, ComponentsModule],
+    imports: [RouterModule, SharedModule, ComponentsModule, ReactiveFormsModule],
     exports: [RouterModule],
     declarations: [
       DashoboardComponent,
