@@ -33,7 +33,9 @@
                                 type="email" 
                                 class="form-control"
                                 id="exampleInputEmail1"
-                                placeholder="Enter email">
+                                placeholder="Enter email"
+                                [readOnly]="usuario.google"
+                               >
                        
                         </div>
                     </div>
@@ -66,7 +68,7 @@
                 <button 
                 type="button" 
                 class="btn btn-success btn-block waves-effect waves-light m-r-10"
-               
+                [disabled]="!imagenSubir"
                 (click)="subirImagen()"
                 >
                 Cambiar imagen
@@ -77,4 +79,5 @@
     </div>
 </div>
 
-<!-- [disabled]="!imagenSubir" -->
+
+
