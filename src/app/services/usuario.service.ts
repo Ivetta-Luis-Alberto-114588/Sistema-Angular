@@ -131,11 +131,11 @@ export class UsuarioService {
       role: this.usuario.role || 'USER_ROLE'
     }
 
+
     return this.http.put( `${ this.base_url }/usuarios/${ this.uid }`, data, {
       headers: {
         'x-token': this.token
-      }
-    } )
+      }} )
   }
 
 }

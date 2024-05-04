@@ -41,7 +41,7 @@
                     <button 
                         type="button"
                         [disabled]="perfilForm.invalid"
-                        (click)="actualizarPerfin()" 
+                        (click)="actualizarPerfil()" 
                         class="btn btn-success waves-effect btn-block waves-light m-r-10">
                         Guardar cambios
                     </button>
@@ -57,7 +57,7 @@
                 <h4 class="card-title">Avatar</h4>
                 <h6 class="card-subtitle">Imagen del usuario</h6>
 
-                <img [src]="usuario.obtenerImagenUrl" >
+                <img src="" >
 
                 <input type="file" (change)="cambiarImagen($event)">
 
@@ -66,7 +66,7 @@
                 <button 
                 type="button" 
                 class="btn btn-success btn-block waves-effect waves-light m-r-10"
-                [disabled]="!imagenSubir"
+               
                 (click)="subirImagen()"
                 >
                 Cambiar imagen
@@ -76,3 +76,5 @@
         </div>
     </div>
 </div>
+
+<!-- [disabled]="!imagenSubir" -->

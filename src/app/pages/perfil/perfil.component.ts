@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
+
+
 import { Usuario } from 'src/app/models/usuario.model';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -30,10 +33,10 @@ export class PerfilComponent implements OnInit {
     })
   }
 
-  actualizarPerfin(){
-    this.usuarioService.actualizarPerfil(this.perfilForm.value)
-      .subscribe( resp => {
 
+  actualizarPerfil(){
+    this.usuarioService.actualizarPerfil(this.perfilForm.value).subscribe({
+      next: (resp ) => {
         //esto se hizo para no hacer un usuario observable (para mi era mas facil)
         //de la forma que se hizo aca es porque los objetos se pasan por referencia, entonces.. 
         // todo apunta a la referencia y al cambiar el valor .. cambia el valor a todo
@@ -44,10 +47,17 @@ export class PerfilComponent implements OnInit {
           this.usuario.nombre = nombre
           es decir modifico la instancia de usuario
         */
-        const {nombre, email} = this.perfilForm.value
-        this.usuario.nombre = nombre
-        this.usuario.email = email
-      })
+          const {nombre, email} = this.perfilForm.value
+          this.usuario.nombre = nombre
+          this.usuario.email = email
+  
+          Swal.fire('Guardado', 'Acualizacion exitosa', 'success')
+      },
+      error: (error ) => {
+        console.log(error)
+        Swal.fire('Error', error.error.msg, 'error')
+      }
+    })
   }
 
   cambiarImagen(event : any ){
@@ -58,7 +68,15 @@ export class PerfilComponent implements OnInit {
   subirImagen(){
     this.fileUploadService.actualizarFoto(this.imagenSubir, 'usuarios', this.usuario.uid!)
       //aca se esta usando otra vez el paso por referencia para que se actualice automaticamente y no usar un observable
-      .then (img => this.usuario.img = img)
+      .then ((img) => {        
+          Swal.fire('Guardada', 'Foto actualizada', 'success')    
+        })
+      .catch(error => {
+        console.log("desde el catch", error)
+        Swal.fire('Error', 'No se pudo subir la imagen', 'error')
+      })
   }
-
+      
 }
+
+
