@@ -57,7 +57,7 @@
                 <h4 class="card-title">Avatar</h4>
                 <h6 class="card-subtitle">Imagen del usuario</h6>
 
-                <img src="" >
+                <img [src]="usuario.obtenerImagenUrl" >
 
                 <input type="file" (change)="cambiarImagen($event)">
 

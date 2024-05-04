@@ -57,7 +57,8 @@ export class PerfilComponent implements OnInit {
 
   subirImagen(){
     this.fileUploadService.actualizarFoto(this.imagenSubir, 'usuarios', this.usuario.uid!)
-      .then (img => console.log(img))
+      //aca se esta usando otra vez el paso por referencia para que se actualice automaticamente y no usar un observable
+      .then (img => this.usuario.img = img)
   }
 
 }
