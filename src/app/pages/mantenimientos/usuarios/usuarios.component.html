@@ -9,7 +9,9 @@
                 <input 
                     type="text" 
                     class="form-control"
-                    placeholder="buscar usuario..." >
+                    placeholder="buscar usuario..." 
+                    (change)="buscar( txtBuscar.value )"
+                    #txtBuscar>
 
             </div>
         </div>
