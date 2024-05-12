@@ -16,12 +16,12 @@ export class SidebarService {
       {titulo: 'rxjs', url:'rxjs'}
     ]  
     },
-    {titulo: 'Secundaria',
-    icono: 'mdi mdi-account-circle',
+    {titulo: 'Mantenimiento',
+    icono: 'mdi mdi-folder-lock-open',
     submenu: [
-      {titulo: 'main', url: '/'},
-      {titulo: 'progressBar', url: 'progress'},
-      {titulo: 'graficas', url: 'grafica1'}
+      {titulo: 'Usuarios', url: 'usuarios'},
+      {titulo: 'Hospitales', url: 'hospitales'},
+      {titulo: 'Medicos', url: 'medicos'}
    
     ]  
     },

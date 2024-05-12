@@ -9,3 +9,13 @@
     justify-content: center;
     text-align: center;
 }
+
+.w100{
+    width: 100px;
+}
+
+.avatar{
+    border: 1px solid grey;
+    width: 30px;
+    border-radius: 100%;
+}

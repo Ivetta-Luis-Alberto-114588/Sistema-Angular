@@ -1,14 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, tap, pipe, map, catchError, of } from 'rxjs';
+import { Observable, tap, pipe, map, catchError, of, delay } from 'rxjs';
 
 
 declare const google: any
 
-import { registerFormInterface } from '../interfaces/registerForm.interface';
 import { enviroment } from 'src/enviroments/enviroment';
+
+import { registerFormInterface } from '../interfaces/registerForm.interface';
+import { ICargarUsuarios } from '../interfaces/cargar-usuarios.interface';
 import { loginFormInterface } from '../interfaces/loginForm.interface';
+
 import { Usuario } from '../models/usuario.model';
 
 
@@ -38,6 +41,14 @@ export class UsuarioService {
 
   get uid() :  string {
     return this.usuario.uid || ''
+  }
+
+  get headers(){
+    return {
+      headers: {
+      'x-token': this.token
+      }
+    }
   }
 
   googleInit(): Promise<any> {
@@ -135,7 +146,31 @@ export class UsuarioService {
     return this.http.put( `${ this.base_url }/usuarios/${ this.uid }`, data, {
       headers: {
         'x-token': this.token
-      }} )
+      }
+    } )
+  }
+
+  cargarUsuarios( desde : number = 0){
+
+    const url = `${this.base_url}/usuarios?desde=${desde}`
+    
+    return this.http.get<ICargarUsuarios>( url , this.headers)
+      .pipe(
+        //pongo el delay para que se muestre el loading de la pagina
+        delay(500),
+        map ( resp => {
+
+          const usuarios = resp.usuarios.map( 
+            item =>  new Usuario(item.nombre, item.email, item.password, item.img, item.google, item.role, item.uid) )
+
+          return {
+            total: resp.total,
+            usuarios
+            
+          }
+        })
+      )
+          
   }
 
 }

@@ -14,12 +14,14 @@ import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
+import { CommonModule } from '@angular/common';
 
 
 
 
 @NgModule({
-    imports: [RouterModule, SharedModule, ComponentsModule, ReactiveFormsModule],
+    imports: [RouterModule, SharedModule, ComponentsModule, ReactiveFormsModule, CommonModule],
     exports: [RouterModule],
     declarations: [
       DashoboardComponent,
@@ -29,6 +31,7 @@ import { ReactiveFormsModule } from '@angular/forms';
       PromesasComponent,
       RxjsComponent,
       PerfilComponent,
+      UsuariosComponent,
       
   ],
     providers: [],

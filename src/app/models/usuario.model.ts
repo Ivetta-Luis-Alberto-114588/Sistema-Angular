@@ -19,6 +19,10 @@ export class Usuario {
     get obtenerImagenUrl(){
         // base_url/upload/usuarios/869a15e7-29d7-408e-93c8-a9baf0a54c2d.jpg
 
+        if (!this.img){
+            return `${base_url}/upload/usuarios/no-image`
+        }
+
         //aca estoy viendo de poner la imagen de google
         if(this.img?.includes('https')){
                 return this.img
@@ -31,7 +35,9 @@ export class Usuario {
 
             //si no hay ninguna imagen devuelvo un nombre de imagen que no existe para que no ponga nada
         } else {
-            return 'no-image'
+            
+            return `${base_url}/upload/usuarios/no-image`
+            // return 'no-image'
         }
 
         
