@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { enviroment } from 'src/enviroments/enviroment';
 import { pipe, map } from 'rxjs';
+import { Usuario } from '../models/usuario.model';
 
 const base_url = enviroment.base_url
 
@@ -27,6 +28,13 @@ export class BusquedasService {
       }
     }
   }
+
+  private transformarUsuarios( resultados : any[]) : Usuario[] {
+
+    return resultados.map(
+      user => new Usuario (user.nombre, user.email, user.password, user.obtenerImagenUrl, user.google, user.role, user.uid)
+    )
+  }
     
   buscar( tipo: 'usuarios' | 'hospitales' | 'medicos',  termino: string = ''){
 
@@ -35,7 +43,15 @@ export class BusquedasService {
  
     return this.http.get<any[]>( url , this.headers)
       .pipe(
-        map( (resp : any) => resp.resultado)
+        map( (resp : any) => {
+          switch ( tipo ) {
+            case 'usuarios':
+              return this.transformarUsuarios( resp.resultado )
+
+            default:
+              return []
+          }
+        })
       )
   }
 

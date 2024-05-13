@@ -13,6 +13,8 @@ export class UsuariosComponent implements OnInit {
 
   public totalUsuarios : number = 0
   usuarios : Usuario[] = []
+  usuariosTmp : Usuario[] = []  //esta variable la uso para cuando no se busque nada va  
+  // traer la ultima busqueda
   public desde : number = 0
   public cargando: boolean = true
 
@@ -34,6 +36,7 @@ export class UsuariosComponent implements OnInit {
       ( {total, usuarios} ) => {
         this.totalUsuarios = total
           this.usuarios = usuarios
+          this.usuariosTmp = usuarios  // para guardar en la variable la ultima busqueda
           
           //hago que no se muestre el loading
           this.cargando = false     
@@ -56,6 +59,11 @@ export class UsuariosComponent implements OnInit {
   }
 
   buscar(valor: string){
+
+    if( valor.trim().length === 0 ){
+      this.usuarios = this.usuariosTmp  //esto es la ultima busqueda hecha
+    }
+
     this.busquedaService.buscar('usuarios', valor).subscribe(
      data => {
       this.usuarios = data
