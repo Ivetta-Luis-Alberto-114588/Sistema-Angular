@@ -16,6 +16,10 @@
 
 .avatar{
     border: 1px solid grey;
-    width: 30px;
+    width: 100px;
     border-radius: 100%;
 }
+
+.cursor {
+    cursor: pointer;
+  }
