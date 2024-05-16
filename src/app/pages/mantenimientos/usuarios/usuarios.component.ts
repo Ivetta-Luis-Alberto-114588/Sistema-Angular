@@ -74,7 +74,15 @@ export class UsuariosComponent implements OnInit {
 
   eliminarUsuario(usuario : Usuario){
     
-    Swal.fire({
+    if( usuario.uid === this.usuarioService.uid){
+       return Swal.fire({
+          title: "No puede borrar usuario",
+          text: "No se puede borrar a si mismo",
+          icon: "error"
+        })    
+    }
+
+    return Swal.fire({
       title: "Esta seguro?",
       text: `Va a borrar a ${usuario.nombre}`,
       icon: "warning",
@@ -84,10 +92,8 @@ export class UsuariosComponent implements OnInit {
       confirmButtonText: "Si, borrar!"
     }).then((result) => {
       if (result.isConfirmed) {
-
-        this.usuarioService.eliminarUsuario(usuario).subscribe(
+        return this.usuarioService.eliminarUsuario(usuario).toPromise().then(
           resp => {
-
             Swal.fire({
               title: "Borrado!",
               text: `El usuario ${usuario.nombre} ha sido borrado`,
@@ -97,11 +103,11 @@ export class UsuariosComponent implements OnInit {
             this.cargarUsuarios()
           }
         )       
+      } else {
+        return Promise.resolve();
       }
     });
-
-
-  }
+}
 
 
 }
