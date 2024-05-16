@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 export class UsuariosComponent implements OnInit {
 
   public totalUsuarios : number = 0
-  usuarios : Usuario[] = []
+  public usuarios : Usuario[] = []
   usuariosTmp : Usuario[] = []  //esta variable la uso para cuando no se busque nada va  
   // traer la ultima busqueda
   public desde : number = 0
@@ -109,5 +109,12 @@ export class UsuariosComponent implements OnInit {
     });
 }
 
+cambiarRol(usuario: Usuario){
+  this.usuarioService.guardarUsuario(usuario).subscribe(
+    resp => {
+      console.log (resp )
+    }
+  )
+}
 
 }

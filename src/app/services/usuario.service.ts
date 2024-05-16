@@ -139,7 +139,7 @@ export class UsuarioService {
 
     data = {
       ... data,
-      role: this.usuario.role || 'USER_ROLE'
+      role: this.usuario.role
     }
 
 
@@ -178,6 +178,13 @@ export class UsuarioService {
     const url = `${this.base_url}/usuarios/${usuario.uid}`
 
     return this.http.delete(url, this.headers)
+  }
+
+
+  
+  guardarUsuario( usuario: Usuario){
+
+    return this.http.put( `${ this.base_url }/usuarios/${ usuario.uid }`, usuario, this.headers )
   }
 
 }
