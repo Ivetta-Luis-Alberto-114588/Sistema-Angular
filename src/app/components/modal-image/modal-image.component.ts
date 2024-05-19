@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ModalImagenService } from 'src/app/services/modal-imagen.service';
 
 @Component({
   selector: 'app-modal-image',
@@ -8,10 +9,14 @@ import { Component } from '@angular/core';
 })
 export class ModalImageComponent {
 
-  public ocultarModal: boolean = false; ;
+  
+  constructor(public modalService : ModalImagenService){
+
+  }
 
   cerrarModal() {
-    this.ocultarModal = true;
+    this.modalService.cerrarModal()
   }
+
 
 }

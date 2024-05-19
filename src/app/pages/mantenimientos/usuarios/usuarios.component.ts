@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from 'src/app/models/usuario.model';
-import { BusquedasService } from 'src/app/services/busquedas.service';
-import { UsuarioService } from 'src/app/services/usuario.service';
 import Swal from 'sweetalert2';
+
+import { UsuarioService } from 'src/app/services/usuario.service';
+import { ModalImagenService } from 'src/app/services/modal-imagen.service';
+import { BusquedasService } from 'src/app/services/busquedas.service';
+
+import { Usuario } from 'src/app/models/usuario.model';
+
 
 @Component({
   selector: 'app-usuarios',
@@ -19,7 +23,11 @@ export class UsuariosComponent implements OnInit {
   public desde : number = 0
   public cargando: boolean = true
 
-  constructor( private usuarioService: UsuarioService, private busquedaService: BusquedasService){}
+  constructor( 
+    private usuarioService: UsuarioService,
+    private busquedaService: BusquedasService,
+    private modalService: ModalImagenService
+  ){}
   
   
   ngOnInit(): void {
@@ -115,6 +123,11 @@ cambiarRol(usuario: Usuario){
       console.log (resp )
     }
   )
+}
+
+abrirModal(usuario: Usuario){
+  console.log(usuario)
+  this.modalService.abrirModal()
 }
 
 }
