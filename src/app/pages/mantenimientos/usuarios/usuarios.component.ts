@@ -127,7 +127,7 @@ cambiarRol(usuario: Usuario){
 
 abrirModal(usuario: Usuario){
   console.log(usuario)
-  this.modalService.abrirModal()
+  this.modalService.abrirModal('usuarios', usuario.uid, usuario.img)
 }
 
 }
