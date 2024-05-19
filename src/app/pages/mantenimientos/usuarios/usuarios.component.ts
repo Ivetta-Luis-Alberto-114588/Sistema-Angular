@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription, delay } from 'rxjs';
 import Swal from 'sweetalert2';
 
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -14,7 +15,7 @@ import { Usuario } from 'src/app/models/usuario.model';
   styles: [
   ]
 })
-export class UsuariosComponent implements OnInit {
+export class UsuariosComponent implements OnInit, OnDestroy{
 
   public totalUsuarios : number = 0
   public usuarios : Usuario[] = []
@@ -22,17 +23,29 @@ export class UsuariosComponent implements OnInit {
   // traer la ultima busqueda
   public desde : number = 0
   public cargando: boolean = true
+  public subscription! : Subscription
+
 
   constructor( 
     private usuarioService: UsuarioService,
     private busquedaService: BusquedasService,
     private modalService: ModalImagenService
   ){}
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe()
+  }
   
   
   ngOnInit(): void {
 
     this.cargarUsuarios()
+
+    this.subscription  = this.modalService.nuevaImagen
+    .pipe(
+      delay(100)
+    )
+    .subscribe( img => {this.cargarUsuarios()})
     
   }
 
@@ -126,7 +139,6 @@ cambiarRol(usuario: Usuario){
 }
 
 abrirModal(usuario: Usuario){
-  console.log(usuario)
   this.modalService.abrirModal('usuarios', usuario.uid, usuario.img)
 }
 
