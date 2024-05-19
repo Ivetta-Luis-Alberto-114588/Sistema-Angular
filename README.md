@@ -1,3 +1,7 @@
+# Resolucion de imagenes
+https://akhromieiev.com/files-does-not-exist-on-type-eventtarget-ngtsc/
+<input class="file-upload" type="file" (change)="submitUpload($any($event).target.files);" />
+
 # 01
 
 ## For Github 
