@@ -16,6 +16,8 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
 import { CommonModule } from '@angular/common';
+import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
+import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
 
 
 
@@ -32,6 +34,8 @@ import { CommonModule } from '@angular/common';
       RxjsComponent,
       PerfilComponent,
       UsuariosComponent,
+      HospitalesComponent,
+      MedicosComponent,
       
   ],
     providers: [],

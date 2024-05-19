@@ -13,6 +13,8 @@ import { PerfilComponent } from './perfil/perfil.component';
 
 //mantenimientos
 import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
+import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
+import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
 
 
 const routes: Routes = [
@@ -28,8 +30,11 @@ const routes: Routes = [
         {path: "perfil", component: PerfilComponent, data : {titulo: 'Perfil'}},
 
 
-        // manteminiento
+
+        // manteminientos
         {path: "usuarios", component: UsuariosComponent, data : {titulo: 'Usuarios de aplicacion'}},
+        {path: "hospitales", component: HospitalesComponent, data : {titulo: 'Hospitales'}},
+        {path: "medicos", component: MedicosComponent, data : {titulo: 'Medicos'}},
     ]}];
 
 @NgModule({
