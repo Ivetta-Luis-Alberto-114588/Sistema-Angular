@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, delay } from 'rxjs';
 import { Hospital } from 'src/app/models/hospital.model';
+import { BusquedasService } from 'src/app/services/busquedas.service';
 import { HospitalService } from 'src/app/services/hospital.service';
 import { ModalImagenService } from 'src/app/services/modal-imagen.service';
 import Swal from 'sweetalert2';
@@ -18,7 +19,11 @@ export class HospitalesComponent implements OnInit, OnDestroy{
   modalService: any;
   public subscription! : Subscription
 
-  constructor(private hospitalService: HospitalService, private modalImagenService: ModalImagenService){}
+  constructor(
+      private hospitalService: HospitalService, 
+      private modalImagenService: ModalImagenService,
+      private busquedaService: BusquedasService  
+    ){}
   
   ngOnDestroy(): void {
     this.subscription.unsubscribe()
@@ -81,5 +86,21 @@ export class HospitalesComponent implements OnInit, OnDestroy{
 
   abrirModal(hospital: Hospital){
     this.modalImagenService.abrirModal('hospitales', hospital._id, hospital.img)
+  }
+
+
+  buscar(valor: string){
+
+    if( valor.trim().length === 0 ){
+      this.cargarHospital()
+      return
+    }
+
+    this.busquedaService.buscar('hospitales', valor).subscribe(
+     data => {
+      console.log(data)
+      this.lista_hospitales = data
+     }
+    )
   }
 }
