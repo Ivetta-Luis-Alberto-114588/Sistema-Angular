@@ -4,6 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 //modules
 import { SharedModule } from '../shared/shared.module';
 import { ComponentsModule } from '../components/components.module';
+import { PipesModule } from '../pipes/pipes.module';
 
 //components
 import { ProgressComponent } from './progress/progress.component';
@@ -23,7 +24,7 @@ import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
 
 
 @NgModule({
-    imports: [RouterModule, SharedModule, ComponentsModule, ReactiveFormsModule, CommonModule, FormsModule],
+    imports: [RouterModule, SharedModule, ComponentsModule, ReactiveFormsModule, CommonModule, FormsModule, PipesModule],
     exports: [RouterModule],
     declarations: [
       DashoboardComponent,

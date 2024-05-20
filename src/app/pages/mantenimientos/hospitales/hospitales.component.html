@@ -34,21 +34,46 @@
 <div class="row" *ngIf="!cargando">
     <div class="col-12">
         <div class="card">
+
+
+            <div class="row">
+                
+                <div class="col-8">
+                    <h4 class="card-title">Hospitales ({{lista_hospitales.length}})</h4>
+                    <h6 class="card-subtitle">Hospitales registrados</h6>
+                </div>
+
+                <div class="col">
+                    <div class="text-right">
+                        <button class="btn btn-primary">
+                            <i class=" fa fa-hospital-o"></i>
+                            Crear Hospital
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+
             <div class="card-body">
-                <h4 class="card-title">Hospitales {{lista_hospitales.length}}</h4>
-                <h6 class="card-subtitle">Hospitales registrados</h6>
+
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Foto</th>
+                                <th class="w100">Foto</th>
                                 <th>Nombre</th>
-                                <th class="text-nowrap">Acciones</th>
+                                <th class="w100 text-nowrap">Acciones</th>
                             </tr>
                         </thead>
                         <tbody >
                             <tr *ngFor="let item of lista_hospitales">
-                                <td> {{item.img}} </td>
+                                <td>                                   
+                                    <img 
+                                        [src]="item.img ? item.img : '' | imagen:'hospitales'" 
+                                        class="avatar cursor"
+                                        [alt]="item.nombre"/>
+                                </td>
                                 <td>
                                     <input 
                                         type="text" 
@@ -59,8 +84,21 @@
                                 </td>
 
                                 <td class="text-nowrap text-center">
-                                    <a href="#" data-toggle="tooltip" data-original-title="Editar"> <i class="fa fa-save text-inverse m-r-10"></i> </a>
-                                    <a href="#" data-toggle="tooltip" data-original-title="Borrar"> <i class="fa fa-close text-danger"></i> </a>
+                                    <a 
+                                        (click)="guardarCambios(item)"
+                                        class="cursor"
+                                        data-toggle="tooltip"
+                                        data-original-title="Guardar cambios"> 
+                                            <i class="fa fa-save text-inverse m-r-10"></i> 
+                                    </a>
+                                    
+                                    
+                                    <a 
+                                        (click)="borrarHospital(item!)" 
+                                        class="cursor"
+                                        data-toggle="tooltip" 
+                                        data-original-title="Borrar"> 
+                                        <i class="fa fa-close text-danger"></i> </a>
                                 </td>
                             </tr>
                             

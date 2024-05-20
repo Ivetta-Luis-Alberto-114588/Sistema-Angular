@@ -15,10 +15,12 @@ import { NotPageFoundComponent } from './404/not-page-found/not-page-found.compo
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     NotPageFoundComponent
+   
     ,
 
   ],
