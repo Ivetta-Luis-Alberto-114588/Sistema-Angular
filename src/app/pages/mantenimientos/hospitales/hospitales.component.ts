@@ -28,7 +28,7 @@ export class HospitalesComponent implements OnInit, OnDestroy{
     this.cargarHospital()    
 
 
-    this.subscription  = this.modalService.nuevaImagen
+    this.subscription  = this.modalImagenService.nuevaImagen
     .pipe(
       delay(100)
     )

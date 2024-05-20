@@ -72,7 +72,7 @@
                             <tr *ngFor="let item of lista_hospitales">
                                 <td>                                   
                                     <img 
-                                        [src]="item.img ? item.img : '' | imagen:'hospitales'" 
+                                        [src]="item.img! | imagen:'hospitales'" 
                                         class="avatar cursor"
                                         alt="imagen"                                        
                                         (click)="abrirModal(item)">
