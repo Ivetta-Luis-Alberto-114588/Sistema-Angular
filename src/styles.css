@@ -39,6 +39,11 @@
     
 }
 
+.img-avatar {
+    width: 200px;
+    height: auto;
+  }
+
 .oculto {
     display: none;
   }

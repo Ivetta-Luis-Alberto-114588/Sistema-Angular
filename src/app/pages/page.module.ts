@@ -19,6 +19,7 @@ import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component'
 import { CommonModule } from '@angular/common';
 import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
 import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
+import { MedicoComponent } from './mantenimientos/medicos/medico/medico.component';
 
 
 
@@ -37,6 +38,7 @@ import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
       UsuariosComponent,
       HospitalesComponent,
       MedicosComponent,
+      MedicoComponent,
       
   ],
     providers: [],
