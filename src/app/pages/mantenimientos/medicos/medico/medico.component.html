@@ -1,1 +1,69 @@
-<p>medico works!</p>
+<div class="row">
+
+    <div class="col-6">
+
+        <div class="card-body">
+            <h4 class="card-title">Nuevo medico</h4>
+            <h6 class="card-subtitle">Actualizar informacion</h6>
+        
+            <form class="form p-t-20">
+                <div class="form-group">
+                    <label for="exampleInputuname">Foto</label>
+                    <div class="input-group">
+                        <img 
+                            src="http://localhost:3000/api/upload/hospitales/eeb2743b-2158-4855-ae33-f721e6bafa7c.jpg"
+                            class="w100" />
+                    </div>
+                </div>
+        
+                <div class="form-group">
+                    <label for="exampleInputuname">Nombre</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="ti-user"></i></div>
+                        <input type="text" class="form-control" id="exampleInputuname" placeholder="Nombre del medico">
+                    </div>
+                </div>
+        
+        
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Hospital</label>
+                    <div class="input-group">
+                        <select class="form-control">
+                            <option value="">Hospital 1</option>
+                            <option value="">Hospital 2</option>
+                            <option value="">Hospital 3</option>
+                        </select>
+                    </div>
+                </div>       
+                
+                <button 
+                    type="submit" 
+                    class="btn btn-success">
+                    <i class="fa fa-save">
+                        Guardar    
+                    </i>
+                </button>
+        
+            </form>
+        </div>
+
+    </div>
+
+
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                
+                <h4 class="card-title">Hospital</h4>
+                <h6 class="card-subtitle">Hospital asignado</h6>
+
+                <img 
+                src="http://localhost:3000/api/upload/hospitales/eeb2743b-2158-4855-ae33-f721e6bafa7c.jpg"
+                class="w100" />
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
