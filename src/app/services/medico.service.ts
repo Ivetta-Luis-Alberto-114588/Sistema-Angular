@@ -37,7 +37,14 @@ export class MedicoService {
       )
   }
 
-  crearMedico(medico: Medico){
+  getMedicoById(_id: string){
+    return this.http.get(`${this.base_url}/medicos/${_id}`, this.headers)
+      .pipe(
+        map( (resp: any) => resp.medico)
+      )
+  }
+
+  crearMedico(medico: {nombre: string, hospital: string}){
 
     const url = `${this.base_url}/medicos`
   
