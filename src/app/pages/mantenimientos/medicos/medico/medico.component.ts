@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { delay } from 'rxjs';
 import { Hospital } from 'src/app/models/hospital.model';
 import { Medico } from 'src/app/models/medico.model';
 import { HospitalService } from 'src/app/services/hospital.service';
@@ -62,13 +63,14 @@ export class MedicoComponent implements OnInit {
     )
   }
 
-  cargarMedico(_id: string){
+  cargarMedico(id: string){
 
-    if(_id === 'nuevo'){
+    if(id === 'nuevo'){
       return 
     }
     
-    this.medicoService.getMedicoById(_id).subscribe(
+    this.medicoService.getMedicoById(id)
+    .subscribe(
       resp => {
         // desestructuro los datos, que tienen esta forma la resp
       //   {
@@ -92,7 +94,7 @@ export class MedicoComponent implements OnInit {
           this.router.navigateByUrl(`/dashboard/medicos` )
           return
         }
-        
+        console.log("resp ->", resp)
         const {nombre, hospital: {_id}} = resp
         this.medicoSeleccionado = resp
 

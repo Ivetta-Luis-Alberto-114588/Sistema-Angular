@@ -37,8 +37,8 @@ export class MedicoService {
       )
   }
 
-  getMedicoById(_id: string){
-    return this.http.get(`${this.base_url}/medicos/${_id}`, this.headers)
+  getMedicoById(id: string){
+    return this.http.get(`${this.base_url}/medicos/${id}`, this.headers)
       .pipe(
         map( (resp: any) => resp.medico)
       )
