@@ -94,7 +94,6 @@ export class MedicoComponent implements OnInit {
           this.router.navigateByUrl(`/dashboard/medicos` )
           return
         }
-        console.log("resp ->", resp)
         const {nombre, hospital: {_id}} = resp
         this.medicoSeleccionado = resp
 

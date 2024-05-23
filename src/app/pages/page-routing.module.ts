@@ -16,6 +16,7 @@ import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component'
 import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
 import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
 import { MedicoComponent } from './mantenimientos/medicos/medico/medico.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
 
 
 const routes: Routes = [
@@ -24,19 +25,20 @@ const routes: Routes = [
     canActivate:[ authGuard ],
     children:[
         {path: "", component: DashoboardComponent, data:{titulo:'Dasboard'}},
+        {path: "perfil", component: PerfilComponent, data : {titulo: 'Perfil'}},
+        {path: "buscar/:termino", component: BusquedaComponent, data : {titulo: 'Busquedas'}},
         {path: 'grafica1', component: Grafica1Component,data: {titulo: 'Grafica'} },
         {path: "progress", component: ProgressComponent, data: {titulo: 'Progress'}},
         {path: "promesas", component: PromesasComponent, data: {titulo: 'Promesas'}},
         {path: "rxjs", component: RxjsComponent, data : {titulo: 'Rxjs'}},
-        {path: "perfil", component: PerfilComponent, data : {titulo: 'Perfil'}},
 
 
 
         // manteminientos
-        {path: "usuarios", component: UsuariosComponent, data : {titulo: 'Usuarios de aplicacion'}},
         {path: "hospitales", component: HospitalesComponent, data : {titulo: 'Hospitales'}},
         {path: "medicos", component: MedicosComponent, data : {titulo: 'Medicos'}},
         {path: "medico/:id", component: MedicoComponent, data : {titulo: 'Medico'}},
+        {path: "usuarios", component: UsuariosComponent, data : {titulo: 'Usuarios de aplicacion'}},
     ]}];
 
 @NgModule({

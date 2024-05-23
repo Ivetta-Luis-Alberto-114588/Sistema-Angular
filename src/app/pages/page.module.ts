@@ -20,6 +20,7 @@ import { CommonModule } from '@angular/common';
 import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
 import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
 import { MedicoComponent } from './mantenimientos/medicos/medico/medico.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
 
 
 
@@ -39,6 +40,7 @@ import { MedicoComponent } from './mantenimientos/medicos/medico/medico.componen
       HospitalesComponent,
       MedicosComponent,
       MedicoComponent,
+      BusquedaComponent,
       
   ],
     providers: [],
