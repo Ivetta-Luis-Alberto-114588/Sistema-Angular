@@ -17,6 +17,7 @@ import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.comp
 import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
 import { MedicoComponent } from './mantenimientos/medicos/medico/medico.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { adminGuard } from '../guards/admin.guard';
 
 
 const routes: Routes = [
@@ -38,7 +39,9 @@ const routes: Routes = [
         {path: "hospitales", component: HospitalesComponent, data : {titulo: 'Hospitales'}},
         {path: "medicos", component: MedicosComponent, data : {titulo: 'Medicos'}},
         {path: "medico/:id", component: MedicoComponent, data : {titulo: 'Medico'}},
-        {path: "usuarios", component: UsuariosComponent, data : {titulo: 'Usuarios de aplicacion'}},
+
+        //rutas de admin
+        {path: "usuarios", canActivate:[adminGuard],  component: UsuariosComponent, data : {titulo: 'Usuarios de aplicacion'}},
     ]}];
 
 @NgModule({
