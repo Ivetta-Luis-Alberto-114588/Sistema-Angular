@@ -15,11 +15,12 @@ export class SidebarComponent implements OnInit {
   usuario! : Usuario
 
   constructor(
-    private sidebar: SidebarService, 
+    public sidebarService: SidebarService, 
     private usuarioService: UsuarioService)
     {
-    this.menu = sidebar.menu;
+    // this.menu = sidebar.menu;
      //hago esto para cuando se inicialice el componente cargue la imagen, esto va a al html 
+     this.menu = this.sidebarService.menu
      this.usuario = this.usuarioService.usuario
   }
   

@@ -4,7 +4,9 @@
             <div class="card-body">
                 <h3>Usuarios</h3> 
 
-                <div class="alert alert-info">
+                <div 
+                    *ngIf="lista_usuarios.length === 0"
+                    class="alert alert-info animated fadeIn fast" >
                     <p class="mb-0">
                         no hay usuarios con ese termino
                     </p>
@@ -23,9 +25,13 @@
                             </thead>
 
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Deshmukh</td>
+                                <tr 
+                                    *ngFor="let item of lista_usuarios"
+                                    class="animated fadeIn fast">
+                                    <td> 
+                                        <img [src]= "item.img! | imagen: 'usuarios'" class="w100">                                        
+                                    </td>
+                                    <td>{{item.nombre}}</td>
                                 </tr>                               
                             </tbody>
 
@@ -44,7 +50,9 @@
             <div class="card-body">
                 <h3>Medicos</h3> 
 
-                <div class="alert alert-info">
+                <div 
+                    *ngIf="lista_medicos.length === 0"
+                    class="alert alert-info animated fadeIn fast">
                     <p class="mb-0">
                         no hay medicos con ese termino
                     </p>
@@ -58,14 +66,24 @@
                             
                             <thead>
                                 <tr>
-                                    <th>Avatar</th>
+                                    <th>Foto</th>
                                     <th>Nombre</th>
                             </thead>
 
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Deshmukh</td>
+                                <tr 
+                                    *ngFor="let item of lista_medicos"
+                                    class="animated fadeIn fast"
+                                    >
+                                    <td>
+                                        <img [src]="item.img! | imagen: 'medicos'" class="w100"> 
+                                        
+                                     </td>
+                                    <td> 
+                                        <a [routerLink]="['/dashboard/medico', item._id]">
+                                            {{item.nombre}} 
+                                        </a>
+                                    </td>
                                 </tr>                               
                             </tbody>
 
@@ -84,7 +102,9 @@
             <div class="card-body">
                 <h3>Hospitales</h3> 
 
-                <div class="alert alert-info">
+                <div 
+                    *ngIf="lista_medicos.length === 0"
+                    class="alert alert-info animated fadeIn fast">
                     <p class="mb-0">
                         no hay hospitales con ese termino
                     </p>
@@ -98,15 +118,20 @@
                             
                             <thead>
                                 <tr>
-                                    <th>Avatar</th>
+                                    <th>Foto</th>
                                     <th>Nombre</th>
                             </thead>
 
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Deshmukh</td>
-                                </tr>                               
+                                <tr 
+                                    *ngFor="let item of lista_hospitales"
+                                    class="animated fadeIn fast">
+                                    <td>
+                                        <img [src]="item.img! | imagen: 'hospitales' " class="w100"> 
+                                       
+                                    </td>
+                                    <td> {{item.nombre}} </td>
+                                </tr>                             
                             </tbody>
 
                         </table>

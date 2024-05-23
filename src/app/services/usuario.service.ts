@@ -51,6 +51,11 @@ export class UsuarioService {
     }
   }
 
+  guardarLocalStorage(token: string, menu: any){
+    localStorage.setItem('token', token)
+    localStorage.setItem('menu', JSON.stringify(menu))
+  }
+
   googleInit(): Promise<any> {
     return new Promise( (resolve) => {
       google.accounts.id.initialize({
@@ -65,6 +70,8 @@ export class UsuarioService {
   logout(){
 
     localStorage.removeItem('token');
+    localStorage.removeItem('menu');
+
 
     this.googleInit();
 
@@ -87,7 +94,7 @@ export class UsuarioService {
         // console.log( "imangen ->", resp)
         this.usuario = new Usuario(nombre, email, '', img, google, role, uid)
 
-        localStorage.setItem('token', resp.token)
+        this.guardarLocalStorage(resp.token, resp.menu)
 
         return true
       }),
@@ -107,7 +114,7 @@ export class UsuarioService {
         //tambien puedo guardar el token en el componente cuando se ejecuta la funcion next
         .pipe(
           tap( (resp : any) =>{
-            localStorage.setItem('token', resp.token)
+            this.guardarLocalStorage(resp.token, resp.menu)
           })
         )
   }
@@ -119,7 +126,7 @@ export class UsuarioService {
     //tambien puedo guardar el token en el componente cuando se ejecuta la funcion next
                 .pipe(
                   tap( (resp : any) =>{
-                    localStorage.setItem('token', resp.token)
+                    this.guardarLocalStorage(resp.token, resp.menu)
                   })
                 )
 
@@ -130,7 +137,7 @@ export class UsuarioService {
           .pipe(
             tap( (resp : any) =>{
               // console.log(resp)
-              localStorage.setItem('token', resp.token)
+              this.guardarLocalStorage(resp.token, resp.menu)
             })
           )
   }

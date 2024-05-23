@@ -43,6 +43,13 @@ export class BusquedasService {
       data => new Hospital (data.nombre, data.img)
     )
   }
+
+  buscarGlobal( termino : string){
+    // localhost:3000/api/todo/xxx
+    return this.http.get(`${base_url}/todo/${termino}`, this.headers)
+    
+  }
+
     
   buscar( tipo: 'usuarios' | 'hospitales' | 'medicos',  termino: string = ''){
 

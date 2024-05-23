@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidebarService } from '../services/sidebar.service';
 
 declare function funcionInicial(): any;
 
@@ -10,10 +11,14 @@ declare function funcionInicial(): any;
 })
 export class PagesComponent implements OnInit {
   
-    
+  constructor( private sidebarService: SidebarService){
+
+  }
   
   ngOnInit(): void {
     funcionInicial()
+
+    this.sidebarService.cargarMenu()
   }
 
   
