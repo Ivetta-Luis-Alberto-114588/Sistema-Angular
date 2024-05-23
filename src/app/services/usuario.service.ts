@@ -71,6 +71,8 @@ export class UsuarioService {
 
     localStorage.removeItem('token');
     localStorage.removeItem('menu');
+    localStorage.removeItem('email');
+    
 
 
     this.googleInit();
@@ -125,8 +127,8 @@ export class UsuarioService {
     return this.http.post(`${ this.base_url }/login`, loginForm)
     //tambien puedo guardar el token en el componente cuando se ejecuta la funcion next
                 .pipe(
-                  tap( (resp : any) =>{
-                    this.guardarLocalStorage(resp.token, resp.menu)
+                  tap( (resp : any) =>{                   
+                    this.guardarLocalStorage(resp.token, resp.menu)                    
                   })
                 )
 

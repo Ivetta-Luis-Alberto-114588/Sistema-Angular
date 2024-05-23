@@ -11,7 +11,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class SidebarComponent implements OnInit {
 
-  menu: any[] = []
+  // menu: any[] = []
   usuario! : Usuario
 
   constructor(
@@ -20,7 +20,7 @@ export class SidebarComponent implements OnInit {
     {
     // this.menu = sidebar.menu;
      //hago esto para cuando se inicialice el componente cargue la imagen, esto va a al html 
-     this.menu = this.sidebarService.menu
+    //  this.menu = this.sidebarService.menu
      this.usuario = this.usuarioService.usuario
   }
   
